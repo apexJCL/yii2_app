@@ -2,12 +2,13 @@
 
 namespace frontend\controllers;
 
-use Yii;
 use common\models\Brand;
 use common\models\BrandSearch;
+use Yii;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * BrandController implements the CRUD actions for Brand model.
@@ -26,6 +27,15 @@ class BrandController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['administrador']
+                    ]
+                ]
+            ]
         ];
     }
 
