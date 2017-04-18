@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property boolean $visible
  */
 class Brand extends \yii\db\ActiveRecord
 {
@@ -27,6 +28,7 @@ class Brand extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            [['visible'], 'boolean'],
             [['name'], 'string', 'max' => 100],
         ];
     }
@@ -39,6 +41,7 @@ class Brand extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
+            'visible' => 'Visible',
         ];
     }
 }

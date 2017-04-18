@@ -2,15 +2,15 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\Brand */
 
-$this->title = 'Update Brand: ' . $model->name;
+/* @var $this yii\web\View */
+/* @var $model backend\models\Brand */
+
+$this->title = 'Create Brand';
 $this->params['breadcrumbs'][] = ['label' => 'Brands', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="brand-update">
+<div class="brand-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

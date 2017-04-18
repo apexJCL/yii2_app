@@ -12,6 +12,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $ver_password;
 
 
     /**
@@ -31,9 +32,25 @@ class SignupForm extends Model
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            [['password', 'ver_password'], 'required'],
+            [['password', 'ver_password'], 'string', 'min' => 6],
+            ['ver_password', 'passwordsMatch']
         ];
+    }
+
+    /**
+     * Checks that passwords match
+     *
+     * @param $attribute
+     * @param $params
+     * @return bool
+     */
+    public function passwordsMatch($attribute, $params)
+    {
+        if ($this->$attribute == $this->password)
+            return true;
+        $this->addError('ver_password', ' Las contraseñas no coinciden');
+        return false;
     }
 
     /**

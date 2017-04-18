@@ -1,14 +1,14 @@
 <?php
 
-namespace common\models;
+namespace backend\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Brand;
+use backend\models\Brand;
 
 /**
- * BrandSearch represents the model behind the search form about `common\models\Brand`.
+ * BrandSearch represents the model behind the search form about `backend\models\Brand`.
  */
 class BrandSearch extends Brand
 {
@@ -20,6 +20,7 @@ class BrandSearch extends Brand
         return [
             [['id'], 'integer'],
             [['name'], 'safe'],
+            [['visible'], 'boolean'],
         ];
     }
 
@@ -60,6 +61,7 @@ class BrandSearch extends Brand
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'visible' => $this->visible,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);
