@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\widgets\Toastr;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -72,6 +73,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        \Yii::$app->session->addFlash(Toastr::INFO, "Hello, darling");
         return $this->render('index');
     }
 
