@@ -3,17 +3,24 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use common\widgets\Alert;
+
 use common\widgets\Toastr;
 use frontend\assets\AppAsset;
+use frontend\assets\BSReadableAsset;
+use frontend\assets\PACEAsset;
+use frontend\assets\ToastrAsset;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\BSReadableAsset;
 
 AppAsset::register($this);
 BSReadableAsset::register($this);
+ToastrAsset::register($this);
+PACEAsset::register($this);
+
+$alerts = Toastr::widget();
+$this->registerJs($alerts, \yii\web\View::POS_READY);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -66,7 +73,6 @@ BSReadableAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= Toastr::widget() ?>
         <?= $content ?>
     </div>
 </div>

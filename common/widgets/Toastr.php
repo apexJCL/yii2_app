@@ -23,33 +23,13 @@ class Toastr extends Widget
     {
         parent::init();
 
-        $typeHolder = '{type}';
-        $contentHolder = '{content}';
-        $baseToast = /** @lang JavaScript */
-            <<<TOASTR
-toastr['$typeHolder']('$contentHolder'); 
-TOASTR;
-
         $session = \Yii::$app->session;
         $flashes = $session->getAllFlashes();
+
         foreach ($flashes as $type => $data) {
-            switch ($type) {
-                case self::SUCCESS:
-                    $toast = str_replace($type, self::SUCCESS, $baseToast);
-                    break;
-                case self::ERROR:
-                    $toast = str_replace($type, self::ERROR, $baseToast);
-                    break;
-                case self::WARNING:
-                    $toast = str_replace($type, self::WARNING, $baseToast);
-                    break;
-                default:
-                case self::INFO:
-                    $toast = str_replace($type, self::INFO, $baseToast);
-                    break;
-            }
-            die();
-            echo str_replace($contentHolder, $data, $toast);
+            $toast = /** @lang JavaScript */
+                "toastr['$type']('$data[0]');";
+            echo $toast;
             $session->remove($type);
         }
     }

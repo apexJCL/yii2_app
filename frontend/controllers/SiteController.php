@@ -73,7 +73,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        \Yii::$app->session->addFlash(Toastr::INFO, "Hello, darling");
         return $this->render('index');
     }
 
@@ -106,7 +105,7 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
+        Yii::$app->session->addFlash(Toastr::SUCCESS, "Sesión cerrada con éxito");
         return $this->goHome();
     }
 

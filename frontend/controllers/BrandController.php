@@ -18,7 +18,7 @@ class BrandController extends Controller
     public function actionIndex()
     {
         return $this->render('index', [
-            'result' => Brand::find()->where(['like', 'name', 'wow'])->all()
+            'result' => Brand::find()->all()
         ]);
     }
 
